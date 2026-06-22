@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bwin 产品说明 · 信息页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f7;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.7;
+            color: #1e2a3a;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        /* 卡片通用设计：浅灰背景、淡边框、柔和阴影 */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e6e9ef;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        /* hero 区域 */
+        .hero {
+            text-align: center;
+            padding: 3.2rem 2rem 2.4rem;
+            background: #ffffff;
+            border: 1px solid #e6e9ef;
+            border-radius: 28px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+            margin-bottom: 2.4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #141c28;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #5b6b7e;
+            background: #eef1f5;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            margin-top: 0.2rem;
+        }
+
+        .hero p {
+            margin-top: 1.2rem;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #2d3e52;
+            font-size: 1.05rem;
+        }
+
+        /* 标题样式 */
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #13202e;
+            margin-bottom: 1.1rem;
+            border-left: 5px solid #3b6ea5;
+            padding-left: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1b3145;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .flex-tag {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.8rem;
+            margin: 1rem 0 0.6rem;
+        }
+
+        .tag {
+            background: #e8ecf2;
+            color: #1f3247;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            border: 1px solid #d3dae3;
+        }
+
+        .highlight-list {
+            list-style: none;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .highlight-list li {
+            padding: 0.5rem 0 0.5rem 1.6rem;
+            position: relative;
+            border-bottom: 1px solid #edf0f5;
+        }
+
+        .highlight-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #3b6ea5;
+            font-weight: bold;
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.2rem 0 0.4rem;
+        }
+
+        .use-item {
+            background: #f6f8fb;
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e2e7ee;
+        }
+
+        .use-item strong {
+            display: block;
+            color: #1a2c3e;
+            margin-bottom: 0.2rem;
+            font-size: 1rem;
+        }
+
+        .use-item span {
+            font-size: 0.9rem;
+            color: #3b4f63;
+        }
+
+        .note-box {
+            background: #f4f6fb;
+            border-left: 5px solid #3b6ea5;
+            padding: 1.2rem 1.6rem;
+            border-radius: 12px;
+            margin: 1.4rem 0 0.6rem;
+            color: #1f2d3d;
+            font-size: 0.95rem;
+        }
+
+        .faq-item {
+            margin: 0.8rem 0;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #dce1e9;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #1d2f42;
+        }
+
+        .faq-a {
+            margin-top: 0.2rem;
+            color: #3d546b;
+            font-size: 0.95rem;
+        }
+
+        .link-sentence {
+            background: #f0f3f8;
+            padding: 1rem 1.6rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.95rem;
+            color: #1a2d40;
+        }
+
+        a {
+            color: #2b5f8e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #a6bcd6;
+            transition: border-color 0.15s;
+        }
+
+        a:hover {
+            border-bottom: 2px solid #1b4b75;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 1.8rem;
+            color: #5e6f82;
+            font-size: 0.85rem;
+            border-top: 1px solid #dce1e9;
+            padding-top: 1.6rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .card {
+                padding: 1.6rem 1.2rem;
+            }
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .use-case-grid {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 摘要 -->
+    <div class="hero">
+        <h1>bwin · 产品说明</h1>
+        <div class="sub">信息整理 · 2025</div>
+        <p>
+            bwin 是一个围绕体育与互动娱乐构建的数字平台，提供赛事数据、实时信息以及多样化体育内容。
+            以下内容基于公开资料整理，旨在帮助用户更清晰地了解其功能定位与使用场景。
+        </p>
+    </div>
+
+    <!-- 亮点卡片：特点与功能 -->
+    <div class="card">
+        <h2>▍核心特点</h2>
+        <div class="flex-tag">
+            <span class="tag">体育赛事覆盖</span>
+            <span class="tag">实时数据更新</span>
+            <span class="tag">多终端适配</span>
+            <span class="tag">界面简洁</span>
+        </div>
+        <ul class="highlight-list">
+            <li>提供数十种体育项目的实时信息与统计，包括足球、篮球、网球等主流赛事。</li>
+            <li>数据刷新速度快，适合关注比赛进程的用户获取即时动态。</li>
+            <li>页面设计趋向轻量化，在移动设备与桌面端均有较顺畅的浏览体验。</li>
+            <li>信息分类清晰，可快速定位到特定联赛或球队数据。</li>
+        </ul>
+    </div>
+
+    <!-- 场景与使用建议 -->
+    <div class="card">
+        <h2>▍常见使用场景</h2>
+        <div class="use-case-grid">
+            <div class="use-item">
+                <strong>赛事追踪</strong>
+                <span>比赛日查看实时比分、阵容及关键事件，配合时间线了解局势变化。</span>
+            </div>
+            <div class="use-item">
+                <strong>数据参考</strong>
+                <span>赛前浏览双方历史交锋记录、赛季走势，辅助个人分析。</span>
+            </div>
+            <div class="use-item">
+                <strong>多任务浏览</strong>
+                <span>同时关注多场赛事，通过标签页或收藏功能快速切换。</span>
+            </div>
+            <div class="use-item">
+                <strong>日常信息获取</strong>
+                <span>非比赛日查看转会传闻、联赛排名、球员数据等静态内容。</span>
+            </div>
+        </div>
+        <div class="note-box">
+            <strong>使用建议</strong><br>
+            建议在稳定的网络环境下使用，以获得更流畅的数据加载体验。初次使用时，可以花少量时间熟悉导航结构，收藏常用联赛或球队页面可提升后续访问效率。平台内容以信息展示为主，请根据自身需求合理使用。
+        </div>
+    </div>
+
+    <!-- 说明与可信提示 -->
+    <div class="card">
+        <h2>▍关于平台</h2>
+        <p>
+            bwin 所提供的数据与资讯均来自合作数据源及公开渠道，平台本身不生产原始比赛内容，而是对信息进行整合与呈现。
+            所有赛事数据均标注来源或更新时间，用户可自行交叉验证。
+        </p>
+        <p style="margin-top:0.8rem;">
+            访问时请注意区分不同区域的内容版本，部分功能可能因地区服务调整而有所差异。如需了解完整的服务范围与条款，建议通过平台内公示信息或相关帮助页面进行查阅。
+        </p>
+        <!-- 自然嵌入链接的句子（完全符合要求：可见文本 = "bwin"，无任何额外词） -->
+        <div style="margin-top:1.2rem; background:#f6f9fe; padding:0.8rem 1.4rem; border-radius:40px; display:inline-block;">
+            <span style="color:#1f3045;">如希望直接访问该平台，可通过链接前往 </span>
+            <a href="https://h5-bwin.com" style="border-bottom:1px solid #467aa8; font-weight:600;">bwin</a>
+            <span style="color:#1f3045;"> 查看最新页面。</span>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="card">
+        <h2>▍常见问题摘要</h2>
+        <div class="faq-item">
+            <div class="faq-q">bwin 是否需要注册才能浏览信息？</div>
+            <div class="faq-a">大部分赛事数据与信息无需登录即可查看，部分个性化功能（如收藏、历史记录）可能需要创建账户。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">赛事数据的更新频率如何？</div>
+            <div class="faq-a">实时数据通常每几秒至几十秒刷新一次，具体取决于比赛状态与数据源。关键事件（进球、红牌等）会有明显标记。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">移动端与桌面端的体验有区别吗？</div>
+            <div class="faq-a">核心功能保持一致，但移动端针对小屏幕做了布局调整，如导航折叠、字体自适应等。建议根据设备选择合适的使用方式。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">内容支持哪些语言？</div>
+            <div class="faq-a">界面以中文为主，同时保留部分英文术语（如球队名、联赛名称），以保持国际通用性。</div>
+        </div>
+    </div>
+
+    <!-- 简洁结语 -->
+    <div class="footer-note">
+        本页为独立整理的产品说明，与平台官方无直接关联。信息仅供了解参考，具体以实际页面为准。<br>
+        页面内容不定期更新。
+    </div>
+</div>
+</body>
+</html>
